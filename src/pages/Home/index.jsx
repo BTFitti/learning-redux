@@ -3,12 +3,16 @@ import { Header } from "../../components/header";
 import { Link } from "react-router-dom";
 //useSelector para consumir o reducer
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { deleteAddress } from "../../redux/user/slice";
 export function Home() {
   const { user } = useSelector((rootReducer) => rootReducer.user); //consumindo os dados alterados que vem através do dispatch
+  const dispatch = useDispatch();
+
 
   function handleDeleteAddress() {
     alert("Endereço deletado com sucesso!");
+    dispatch(deleteAddress())
   }
 
   return (
