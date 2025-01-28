@@ -3,13 +3,23 @@ import styles from './address.module.css'
 import { Header } from '../../components/header'
 import { Link } from 'react-router-dom'
 
-export function Address() {
-  const [addressName, setAddressName] = useState("")
-  const [addressNumber, setAddressNumber] = useState("")
+import { useDispatch, useSelector } from 'react-redux'
+import { addAddress } from '../../redux/user/slice'
 
+export function Address() {
+  const {user} = useSelector((rootReducer)=>rootReducer.user)
+  //os dois pontos de interrogação significam que se a parte da esquerda dele nao for nula, retorna ela, caso contrário, retorna o que tem a direita dele ou seja "" +
+  //então os campos da useState se já existirem (ja foram cadastrados) vão aparecer nos inputs, caso não existam, aparece uma string vazia e o placeholder aparece.
+  const [addressName, setAddressName] = useState(user?.address?.location ?? "");
+  const [addressNumber, setAddressNumber] = useState(user?.address?.number ??"");
+
+  const dispatch = useDispatch();
 
   function handleRegisterAddress(){
-    console.log(addressName, addressNumber)
+    dispatch(addAddress({
+      location: addressName,
+      number: addressNumber
+    }))
   }
 
   return (

@@ -11,7 +11,6 @@ export function Home() {
 
 
   function handleDeleteAddress() {
-    alert("Endereço deletado com sucesso!");
     dispatch(deleteAddress())
   }
 
