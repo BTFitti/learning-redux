@@ -3,13 +3,22 @@ import styles from './login.module.css'
 
 import { Link } from 'react-router-dom'
 
+//usado para disparar uma ação
 import { useDispatch } from 'react-redux';
+
+//createUser é a nossa action, importo ela para usar no dispatch
 import { createUser } from '../../redux/user/slice';
 
+import { useNavigate } from 'react-router-dom';
+
 export function Login() {
+
   const dispatch = useDispatch();
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+
+  const navigate = useNavigate();
 
   function handleLogin(e){
     e.preventDefault()
@@ -17,10 +26,12 @@ export function Login() {
       alert("Envie os dados do usuário")
       return
     }
+    //disparando nossa action
     dispatch(createUser({
-      name: name,
+      name: name,//passando para a action os valores da useState que são recebidos pelo formulário de login.
       email: email,
     }))
+    navigate("/painel")
   }
 
   return (

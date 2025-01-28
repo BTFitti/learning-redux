@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export function Home() {
-  const { user } = useSelector((rootReducer) => rootReducer.user);
+  const { user } = useSelector((rootReducer) => rootReducer.user); //consumindo os dados alterados que vem através do dispatch
 
   function handleDeleteAddress() {
     alert("Endereço deletado com sucesso!");
   }
-  
 
   return (
     <>
@@ -32,16 +31,24 @@ export function Home() {
         <main className={styles.content}>
           <div className={styles.message}>
             {/* como já estou pegando os dados do usuário através do userReducer, eu consigo acessar por exemplo o user.name*/}
-            <h1 className={styles.title}>Olá {user ? user.name : "Visitante"}, bem vindo!</h1>
+            <h1 className={styles.title}>
+              Olá {user ? user.name : "Visitante"}, bem vindo!
+            </h1>
 
-            <span>Email: {user ? user.email : "...."}</span>
+            {user && <span>Email: {user.email}</span>}
 
-            <strong className={styles.addressLabel}>Endereço atual:</strong>
-            <div className={styles.address}>
-              <p>Rua centro, n 123</p>
+            {user && user.address && (
+              <>
+                <strong className={styles.addressLabel}>Endereço atual:</strong>
+                <div className={styles.address}>
+                  <p>{user.address.location}, Nº {user.address.number}</p>
 
-              <button onClick={handleDeleteAddress}>Deletar endereço</button>
-            </div>
+                  <button onClick={handleDeleteAddress}>
+                    Deletar endereço
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </main>
       </div>

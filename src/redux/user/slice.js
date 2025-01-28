@@ -12,14 +12,19 @@ export const userSlice = createSlice({
         createUser: (state, action)=>{
             //oque acontece aqui é que estou recebendo oque está sendo digitado na pagina de login através do dispatch e colocando dentro da propriedade user do slice +
             //através do payload, lembrando que o payload é a "carga" ele recebe os dados e eles ficam armazenados nele
+            
             return{
-                ...state,
-                user: {
+                ...state,//manter tudo oque ja tem e alterar oque eu quero em seguida.
+                user: {//alterando a propriedade user adicionando um nome, email e address, mudei o estado inicial que era nulo para esses dados obtidos através do login
                     name: action.payload.name,
                     email: action.payload.email,
-                    address: null,
+                    address: {
+                        location: "Rua São Paulo",
+                        number: "1592"
+                    },
                 }
             }
+
         }
     }
 })
