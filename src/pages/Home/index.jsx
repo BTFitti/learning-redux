@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 //useSelector para consumir o reducer
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deleteAddress } from "../../redux/user/slice";
+import { deleteAddress, fetchUsers } from "../../redux/user/slice";
 export function Home() {
   const { user } = useSelector((rootReducer) => rootReducer.user); //consumindo os dados alterados que vem através do dispatch
   const dispatch = useDispatch();
@@ -12,6 +12,9 @@ export function Home() {
 
   function handleDeleteAddress() {
     dispatch(deleteAddress())
+  }
+  function handleFetchUsers(){
+    dispatch(fetchUsers())
   }
 
   return (
@@ -52,6 +55,11 @@ export function Home() {
                 </div>
               </>
             )}
+            <hr />
+            <br />
+            <h2>Lista de usuários</h2>
+            <button onClick={handleFetchUsers}>Buscar usuários</button>
+            <br />
           </div>
         </main>
       </div>
