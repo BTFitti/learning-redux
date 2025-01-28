@@ -1,16 +1,16 @@
-.container{
+.container {
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 4px;
 }
 
-.content{
+.content {
   margin: 24px 0;
 }
 
-.address{
-  background-color: #FFF;
+.address {
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   padding: 14px;
@@ -19,21 +19,30 @@
   gap: 8px;
 }
 
-.input{
+.input {
   height: 40px;
   border-radius: 8px;
-  border:1px solid #ccc;
+  border: 1px solid #ccc;
   background-color: #f0f9fd;
   padding: 0 14px;
   font-size: 16px;
 }
 
-.button{
+.button {
   height: 40px;
   border-radius: 8px;
-  border:0;
-  color: #FFF;
-  background-color: #3366FF;
+  border: 0;
+  color: #fff;
+  background-color: #3366ff;
   padding: 0 14px;
   font-size: 16px;
+}
+.buttonDelete {
+  margin-left: 16px;
+  background-color: red;
+  padding: 4px;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+
 }
