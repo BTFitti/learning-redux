@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 //useSelector para consumir o reducer
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deleteAddress, fetchUsers } from "../../redux/user/slice";
+import { deleteAddress, fetchUserById, fetchUsers } from "../../redux/user/slice";
 export function Home() {
+  
   const { user, users, loading } = useSelector((rootReducer) => rootReducer.user); //consumindo os dados alterados que vem através do dispatch
   const dispatch = useDispatch();
 
@@ -15,6 +16,10 @@ export function Home() {
   }
   function handleFetchUsers(){
     dispatch(fetchUsers())
+  }
+  function handleFetchUsersById(){
+    const userId = 5;
+    dispatch(fetchUserById(userId))
   }
 
   return (
@@ -59,6 +64,7 @@ export function Home() {
             <br />
             <h2>Lista de usuários</h2>
             <button onClick={handleFetchUsers}>Buscar usuários</button>
+            <button onClick={handleFetchUsersById}>Buscar usuário com ID</button>
             <br />
             {loading && <strong>Carregando usuários...</strong>}
             {!loading && users.map((user)=>(

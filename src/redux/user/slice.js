@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   users: [],
-  loading: false
+  loading: false,
 };
 export const userSlice = createSlice({
   name: "user",
@@ -67,17 +67,39 @@ export const userSlice = createSlice({
     fetchUsers: (state) => {
       state.loading = true;
     },
-    fetchUsersSuccess: (state,action)=>{
-      state.users = action.payload
+    fetchUsersSuccess: (state, action) => {
+      state.users = action.payload;
       state.loading = false;
     },
-    fetchUsersFailure:(state,action)=>{
+    fetchUsersFailure: (state, action) => {
       console.log(action.payload);
       state.loading = false;
+    },
+    fetchUserById: (state) => {
+      console.log("Slice chamado");
+    },
+    fetchUserByIdSuccess: (state,action) => {
+      console.log(`User do id ${action.payload.id}`);
+      console.log(`Cujo nome é: ${action.payload.name}`);
+      
+      
+    },
+    fetchUserByIdFailure: (state, action) => {
+      console.log("Error no fetchById");
     },
   },
 });
 //exportando a action criada
-export const { createUser, logoutUser, deleteAddress, addAddress, fetchUsers, fetchUsersSuccess, fetchUsersFailure } =
-  userSlice.actions;
+export const {
+  createUser,
+  logoutUser,
+  deleteAddress,
+  addAddress,
+  fetchUsers,
+  fetchUsersSuccess,
+  fetchUsersFailure,
+  fetchUserById,
+  fetchUserByIdFailure,
+  fetchUserByIdSuccess,
+} = userSlice.actions;
 export default userSlice.reducer;
