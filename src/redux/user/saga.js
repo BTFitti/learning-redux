@@ -12,7 +12,7 @@ function* fetchUsers() {
   try {
     yield delay(2000)
     //yield - esperar a resposta de uma chamada assincrona.
-    const response = yield call(axios.get,"https://jsonplaceholder.typicode.com/users/");
+    const response = yield call(axios.get,"https://jsonplaceholder.typicode.com/users/xcasdasdsad");
     yield put(fetchUsersSuccess(response.data));
     
   } catch (error) {

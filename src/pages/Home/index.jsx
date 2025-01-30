@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { deleteAddress, fetchUserById, fetchUsers } from "../../redux/user/slice";
 export function Home() {
   
-  const { user, users, loading } = useSelector((rootReducer) => rootReducer.user); //consumindo os dados alterados que vem através do dispatch
+  const { user, users, loading, didntFetch } = useSelector((rootReducer) => rootReducer.user); //consumindo os dados alterados que vem através do dispatch
   const dispatch = useDispatch();
 
 
@@ -67,6 +67,7 @@ export function Home() {
             <button onClick={handleFetchUsersById}>Buscar usuário com ID</button>
             <br />
             {loading && <strong>Carregando usuários...</strong>}
+            {didntFetch && <strong>Ocorreu um erro ao buscar os usuários, tente novamente!</strong>}
             {!loading && users.map((user)=>(
               <div key={user.id}>
                 <p>ID: {user.id} | {user.name}</p>

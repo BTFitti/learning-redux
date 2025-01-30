@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   users: [],
   loading: false,
+  didntFetch: false
 };
 export const userSlice = createSlice({
   name: "user",
@@ -74,6 +75,7 @@ export const userSlice = createSlice({
     fetchUsersFailure: (state, action) => {
       console.log(action.payload);
       state.loading = false;
+      state.didntFetch = true;
     },
     fetchUserById: (state) => {
       console.log("Slice chamado");
