@@ -4,7 +4,8 @@ const initialState = {
   user: null,
   users: [],
   loading: false,
-  didntFetch: false
+  didntFetch: false,
+  errorMessage: null,
 };
 export const userSlice = createSlice({
   name: "user",
@@ -74,6 +75,7 @@ export const userSlice = createSlice({
     },
     fetchUsersFailure: (state, action) => {
       console.log(action.payload);
+      state.errorMessage = action.payload
       state.loading = false;
       state.didntFetch = true;
     },
